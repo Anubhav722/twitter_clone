@@ -1,1 +1,6 @@
-{{ object_list }}
+{% for obj in object_list %}
+    {{ obj.content }}</br>
+    {{ obj.timestamp }}</br>
+    {{ obj.user }}</br>
+    {{ obj.timestamp|timesince }}</br>
+{% endfor %}
