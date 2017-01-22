@@ -1,0 +1,8 @@
+<h1>Default template name</h1>
+
+{% for obj in object_list %}
+    {{ obj.content }}</br>
+    {{ obj.timestamp }}</br>
+    {{ obj.user }}</br>
+    {{ obj.timestamp|timesince }}</br>
+{% endfor %}
