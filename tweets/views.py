@@ -8,7 +8,7 @@ from .models import Tweet
 class TweetCreateView(CreateView):
     form_class = TweetModelForm
     template_name = 'tweets/create_view.html'
-    success_url = 'tweet/create/'
+    success_url = '/tweet/create/'
 
     def form_valid(self, form):
         #form.send_email()
