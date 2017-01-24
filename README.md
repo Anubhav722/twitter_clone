@@ -8,4 +8,6 @@ In this we will about how give and take away permissions from a user or a group.
 screenshots added.
 The permission can then be assigned to a User via its user_permissions attribute or to a Group via its permissions attribute.
 
-3- https://docs.djangoproject.com/en/1.10/ref/forms/validation/     :Validation Errors in django
+3- https://docs.djangoproject.com/en/1.10/ref/class-based-views/mixins/    :Simple Mixins
+
+4- https://docs.djangoproject.com/en/1.10/ref/forms/validation/     :Validation Errors in django
