@@ -135,3 +135,7 @@ class TweetUpdateView(UpdateView):
 class TweetDeleteView(DeleteView):
     model = Tweet
     success_url = reverse_lazy('list')
+
+
+# Generic DATE VIEWS HERE
+

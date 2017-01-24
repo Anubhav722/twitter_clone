@@ -1,10 +1,16 @@
 from django.conf.urls import url
 from .views import TweetDetailView, TweetListView, TweetCreateView #tweet_detail_view, tweet_list_view
 
-
+from .models import Tweet
 from django.views.generic.base import RedirectView
 # These are base views
-from .views import MyView, HomePageView, TweetCounterRedirectView, ContactView, TweetUpdateView, TweetDeleteView
+from .views import MyView, HomePageView, TweetCounterRedirectView
+
+# These are generic editing views
+from .views import ContactView, TweetUpdateView, TweetDeleteView
+
+# These are Generic date views
+from django.views.generic.dates import ArchiveIndexView
 urlpatterns = [
     #url(r'^$', tweet_list_view, name='list'),
     #url(r'^1/$', tweet_detail_view, name='detail'),
@@ -22,4 +28,8 @@ urlpatterns = [
     url(r'^form/$', ContactView.as_view(), name='contact'),
     url(r'^update/(?P<pk>[0-9]+)/$', TweetUpdateView.as_view(), name='update'),
     url(r'^delete/(?P<pk>[0-9]+)/$', TweetDeleteView.as_view(), name='delete'),
+
+    # Generic Date views
+    url(r'^archive/$', ArchiveIndexView.as_view(model=Tweet, date_field="timestamp"),name="tweet_archive"),
+
 ]

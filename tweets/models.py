@@ -3,6 +3,7 @@ from django.db import models
 from django.conf import settings
 
 from .validators import validate_content
+from django.urls import reverse
 # Create your models here.
 
 class Tweet(models.Model):
@@ -10,6 +11,9 @@ class Tweet(models.Model):
     content = models.CharField(max_length=140, validators=[validate_content])
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return str(self.content)
