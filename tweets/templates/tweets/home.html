@@ -1,0 +1,8 @@
+<h1>This is being displayed via template view</h1>
+
+{% for i in latest_articles %}
+{{ i.user }}</br>
+{{ i.content }}</br>
+{{ i.timestamp }}</br>
+{{ i.timestamp|timesince }}</br> <hr/>
+{% endfor %}
