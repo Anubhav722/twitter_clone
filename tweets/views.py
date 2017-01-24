@@ -10,8 +10,8 @@ from django.http import HttpResponse
 from django.views import View
 from django.views.generic.base import TemplateView, RedirectView
 from django.shortcuts import get_object_or_404
-
-from django.views.generic.edit import FormView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic.edit import FormView, UpdateView, DeleteView
 
 # Create your views here.
 
@@ -131,3 +131,7 @@ class TweetUpdateView(UpdateView):
     fields = ['content']
     template_name_suffix = '_update_form'
     success_url = '/tweet/'
+
+class TweetDeleteView(DeleteView):
+    model = Tweet
+    success_url = reverse_lazy('list')

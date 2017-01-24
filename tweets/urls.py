@@ -4,7 +4,7 @@ from .views import TweetDetailView, TweetListView, TweetCreateView #tweet_detail
 
 from django.views.generic.base import RedirectView
 # These are base views
-from .views import MyView, HomePageView, TweetCounterRedirectView, ContactView, TweetUpdateView
+from .views import MyView, HomePageView, TweetCounterRedirectView, ContactView, TweetUpdateView, TweetDeleteView
 urlpatterns = [
     #url(r'^$', tweet_list_view, name='list'),
     #url(r'^1/$', tweet_detail_view, name='detail'),
@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^go-to-django/$', RedirectView.as_view(url='https://djangoproject.com'), name='go-to-django'),
     url(r'^form/$', ContactView.as_view(), name='contact'),
     url(r'^update/(?P<pk>[0-9]+)/$', TweetUpdateView.as_view(), name='update'),
+    url(r'^delete/(?P<pk>[0-9]+)/$', TweetDeleteView.as_view(), name='delete'),
 ]
