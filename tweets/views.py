@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, CreateView
 
-from .forms import TweetModelForm
+from .forms import TweetModelForm, ContactForm
 from .models import Tweet
 from django.http import HttpResponse
 
@@ -11,10 +11,12 @@ from django.views import View
 from django.views.generic.base import TemplateView, RedirectView
 from django.shortcuts import get_object_or_404
 
+from django.views.generic.edit import FormView
+
 # Create your views here.
 
 
-
+# This is generic editing view
 class TweetCreateView(CreateView):
     form_class = TweetModelForm
     template_name = 'tweets/create_view.html'
@@ -109,3 +111,17 @@ class TweetCounterRedirectView(RedirectView):
         #tweet.update_counter()
         return super(TweetCounterRedirectView, self).get_redirect_url(*args, **kwargs)
 
+
+
+# Examples of generic editing views
+
+class ContactView(FormView):
+    template_name = 'tweets/contact.html'
+    form_class = ContactForm
+    success_url = '/thanks/'
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.send_email()
+        return super(ContactView, self).form_valid(form)
