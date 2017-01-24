@@ -4,6 +4,7 @@ from django.views.generic import DetailView, ListView, CreateView, UpdateView, D
 from .forms import TweetModelForm
 from .models import Tweet
 from django.urls import reverse_lazy
+from django.db.models import Q
 # importing login mixin here
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .mixins import FormUserNeededMixin, UserOwnerMixin
@@ -34,9 +35,22 @@ class TweetDetailView(DetailView):
     #     return Tweet.objects.get(id=pk)
 
 class TweetListView(ListView):
-    queryset = Tweet.objects.all()
+    #queryset = Tweet.objects.all()
     # template_name = 'tweets/list_view.html'
     # by default the name of the template will be tweet_list.html
+
+    def get_queryset(self):
+        qs = Tweet.objects.all()
+        print (self.request.GET)
+        query = self.request.GET.get('q', None)
+        if query is not None:
+            qs = qs.filter(
+                Q(content__icontains=query) |
+                Q(user__username__icontains=query) |
+                Q(timestamp__icontains=query)
+            )
+        return qs
+
     def get_context_data(self, *args, **kwargs):
         context= super(TweetListView, self).get_context_data(*args, **kwargs)
         #print (context)
