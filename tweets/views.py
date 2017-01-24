@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from django.views.generic import DetailView, ListView, CreateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView
 
 from .forms import TweetModelForm
 from .models import Tweet
 
 # importing login mixin here
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .mixins import FormUserNeededMixin
+from .mixins import FormUserNeededMixin, UserOwnerMixin
 # Create your views here.
 
 # learn about this CreateView
@@ -42,6 +42,13 @@ class TweetListView(ListView):
         #print (context)
         return context
 
+class TweetUpdateView(UserOwnerMixin, FormUserNeededMixin, UpdateView):
+    #model = Tweet
+    queryset = Tweet.objects.all()
+    form_class = TweetModelForm
+    template_name = 'tweets/update_view.html'
+    success_url = '/tweet/'
+    #login_url = '/admin/'
 
 
 # def tweet_create_view(request):
