@@ -11,12 +11,12 @@ from django.views import View
 from django.views.generic.base import TemplateView, RedirectView
 from django.shortcuts import get_object_or_404
 
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, UpdateView
 
 # Create your views here.
 
 
-# This is generic editing view
+# This is generic editing view .. this is a combination of CreateView and FormView
 class TweetCreateView(CreateView):
     form_class = TweetModelForm
     template_name = 'tweets/create_view.html'
@@ -45,7 +45,7 @@ class TweetListView(ListView):
     # by default the name of the template will be tweet_list.html
     def get_context_data(self, *args, **kwargs):
         context= super(TweetListView, self).get_context_data(*args, **kwargs)
-        print (context)
+        #print (context)
         return context
 
 
@@ -125,3 +125,9 @@ class ContactView(FormView):
         # It should return an HttpResponse.
         form.send_email()
         return super(ContactView, self).form_valid(form)
+
+class TweetUpdateView(UpdateView):
+    model = Tweet
+    fields = ['content']
+    template_name_suffix = '_update_form'
+    success_url = '/tweet/'
