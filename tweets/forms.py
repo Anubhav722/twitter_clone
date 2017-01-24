@@ -11,6 +11,7 @@ class TweetModelForm(forms.ModelForm):
         ]
 
     # raising a ValidationError # this one gives directly on the field
+
     # def clean_content(self, *args, **kwargs):
     #     content = self.cleaned_data.get('content')
     #

@@ -5,6 +5,7 @@ from .forms import TweetModelForm
 from .models import Tweet
 # Create your views here.
 
+# learn about this CreateView
 class TweetCreateView(CreateView):
     form_class = TweetModelForm
     template_name = 'tweets/create_view.html'
@@ -15,10 +16,12 @@ class TweetCreateView(CreateView):
         form.instance.user = self.request.user
         return super(TweetCreateView, self).form_valid(form)
 
-
+#learn about DetailView
 class TweetDetailView(DetailView):
     queryset = Tweet.objects.all()
     # template_name = 'tweets/detail_view.html'
+    # by default the name of the template will be tweet_detail.html
+    # learn about get_object(self)
 
     # def get_object(self):
     #     print (self.kwargs) # here it is pk
@@ -28,7 +31,7 @@ class TweetDetailView(DetailView):
 class TweetListView(ListView):
     queryset = Tweet.objects.all()
     # template_name = 'tweets/list_view.html'
-
+    # by default the name of the template will be tweet_list.html
     def get_context_data(self, *args, **kwargs):
         context= super(TweetListView, self).get_context_data(*args, **kwargs)
         print (context)
@@ -36,9 +39,19 @@ class TweetListView(ListView):
 
 
 
+# def tweet_create_view(request):
+#     form = TweetModelForm(request.POST or None)
+#     if form.is_valid():
+#         instance = form.save(commit=False)
+#         instance.user = request.user
+#         instance.save()
+#     context = {
+#         "form": form
+#     }
+#     return render(request, 'tweets/create_view.html', context)
 
 
-# def tweet_detail_view(request, pk=None):
+        # def tweet_detail_view(request, pk=None):
 #     obj = Tweet.objects.get(id=pk)
 #     context ={
 #         'object':obj
@@ -52,3 +65,5 @@ class TweetListView(ListView):
 #         'object_list':queryset
 #     }
 #     return render(request, 'tweets/list_view.html', context)
+
+
