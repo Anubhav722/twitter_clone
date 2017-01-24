@@ -11,6 +11,8 @@ from .views import ContactView, TweetUpdateView, TweetDeleteView
 
 # These are Generic date views
 from django.views.generic.dates import ArchiveIndexView
+from .views import TweetYearArchiveView
+
 urlpatterns = [
     #url(r'^$', tweet_list_view, name='list'),
     #url(r'^1/$', tweet_detail_view, name='detail'),
@@ -31,5 +33,5 @@ urlpatterns = [
 
     # Generic Date views
     url(r'^archive/$', ArchiveIndexView.as_view(model=Tweet, date_field="timestamp"),name="tweet_archive"),
-
+    url(r'^(?P<year>[0-9]{4})/$', TweetYearArchiveView.as_view, name="tweet_year_archive"),
 ]

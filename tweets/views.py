@@ -13,6 +13,10 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView, UpdateView, DeleteView
 
+
+
+# Generic Date Views
+from django.views.generic.dates import YearArchiveView
 # Create your views here.
 
 
@@ -138,4 +142,8 @@ class TweetDeleteView(DeleteView):
 
 
 # Generic DATE VIEWS HERE
-
+class TweetYearArchiveView(YearArchiveView):
+    queryset = Tweet.objects.all()
+    date_field = "timestamp"
+    make_object_list = True
+    allow_future = True
