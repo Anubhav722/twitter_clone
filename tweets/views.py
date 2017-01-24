@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import DetailView, ListView, CreateView, UpdateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
 from .forms import TweetModelForm
 from .models import Tweet
-
+from django.urls import reverse_lazy
 # importing login mixin here
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .mixins import FormUserNeededMixin, UserOwnerMixin
@@ -50,6 +50,11 @@ class TweetUpdateView(UserOwnerMixin, FormUserNeededMixin, UpdateView):
     success_url = '/tweet/'
     #login_url = '/admin/'
 
+class TweetDeleteView(LoginRequiredMixin, DeleteView):
+    model = Tweet
+    template_name = 'tweets/delete_confirm.html'
+    #success_url = reverse_lazy('home')
+    success_url = reverse_lazy('tweet:list')
 
 # def tweet_create_view(request):
 #     form = TweetModelForm(request.POST or None)
