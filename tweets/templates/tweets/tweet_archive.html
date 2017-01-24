@@ -1,0 +1,9 @@
+{{ latest }}</br><hr/>
+
+<p style="color:red"><strong>In this latest has the list of objects in the queryset. Just like object_list for ListView.</strong></p>
+
+<ul>
+    {% for tweet in latest %}
+        <li>{{ tweet.timestamp }}: {{ tweet.content }}</li>
+    {% endfor %}
+</ul>
