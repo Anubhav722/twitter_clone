@@ -15,6 +15,7 @@ class TweetCreateView(FormUserNeededMixin, CreateView):
     form_class = TweetModelForm
     template_name = 'tweets/create_view.html'
     success_url = '/tweet/'
+
     login_url = '/admin/'
 
     # def form_valid(self, form):
@@ -64,6 +65,7 @@ class TweetUpdateView(UserOwnerMixin, FormUserNeededMixin, UpdateView):
     success_url = '/tweet/'
     #login_url = '/admin/'
 
+# In this delete another user can delete another user's post. Try avoiding this with mixins
 class TweetDeleteView(LoginRequiredMixin, DeleteView):
     model = Tweet
     template_name = 'tweets/delete_confirm.html'
