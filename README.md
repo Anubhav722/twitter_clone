@@ -13,3 +13,5 @@ The permission can then be assigned to a User via its user_permissions attribute
 4- https://docs.djangoproject.com/en/1.10/ref/forms/validation/     :Validation Errors in django
 
 5- https://docs.djangoproject.com/en/1.10/ref/forms/widgets/   : form widgets/Textarea 
+
+6- http://www.django-rest-framework.org/#funding  : rest_framework introduced, will create a new branch and get familiar with it.
