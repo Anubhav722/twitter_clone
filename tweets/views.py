@@ -42,7 +42,7 @@ class TweetListView(ListView):
 
     def get_queryset(self):
         qs = Tweet.objects.all()
-        print (self.request.GET)
+        #print (self.request.GET)
         query = self.request.GET.get('q', None)
         if query is not None:
             qs = qs.filter(
