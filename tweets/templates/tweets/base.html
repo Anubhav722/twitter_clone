@@ -1,3 +1,4 @@
+
 {% load static %}
 <html lang="en">
   <head>
@@ -20,6 +21,7 @@
   </head>
   <body>
     <div class='container'>
+      {% include 'tweets/navbar.html' %}
       {% block content %}
       {% endblock content %}
 
