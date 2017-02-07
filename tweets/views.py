@@ -54,9 +54,8 @@ class TweetListView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context= super(TweetListView, self).get_context_data(*args, **kwargs)
-        context['create_form'] = TweetModelForm()
-        context['create_url'] = reverse_lazy('tweet:create')
-        #print (context)
+        context['create_form'] = TweetModelForm() # need to learn about these two .
+        context['create_url'] = reverse_lazy('tweet:create') # need to learn about this too.
         return context
 
 class TweetUpdateView(UserOwnerMixin, FormUserNeededMixin, UpdateView):
