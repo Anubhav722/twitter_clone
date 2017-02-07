@@ -1,3 +1,6 @@
+{% extends 'tweets/base.html' %}
+
+{% block content %}
 {% include 'tweets/search_form.html' %}</br>
 
 <h1>Default template name</h1>
@@ -14,3 +17,4 @@
     <p>No tweets yet.</p>
     {% endif %}
 {% endfor %}
+{% endblock %}
