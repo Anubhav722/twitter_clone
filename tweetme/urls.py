@@ -27,6 +27,8 @@ urlpatterns = [
     # url(r'^$', home, name='home'),
     url(r'^$', TweetListView.as_view(), name='home'),
     url(r'^tweet/', include('tweets.urls', namespace='tweet')),
+    # rest_framework
+    url(r'^api/tweet/', include('tweets.api.urls', namespace='tweet-api')),
 ]
 if settings.DEBUG:
     urlpatterns+=(static(settings.STATIC_URL, document_root=settings.STATIC_ROOT))
